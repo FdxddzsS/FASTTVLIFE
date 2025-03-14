@@ -3,22 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAST TV LIFE</title>
+    <title>beIN SPORTS AR</title>
     <style>
-        body, html {
+        body {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            direction: rtl;
             margin: 0;
             padding: 0;
-            height: 100%;
+        }
+
+        .header {
+            background-color: #22b14c;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 90%;
+            margin: auto;
             overflow: hidden;
         }
-        iframe {
-            width: 100%;
-            height: 100vh;
-            border: none;
+
+        .slider {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 10px;
+        }
+
+        .slide {
+            flex: 0 0 calc(12% - 10px);
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .slide img {
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: auto;
         }
     </style>
 </head>
 <body>
-    <iframe src="https://high-kora.com/TOD/WEB/BEIN/admin/WEB/TV.html" allowfullscreen></iframe>
+
+    <div class="header">BEIN SPORTS AR</div>
+
+    <div class="slider-container">
+        <div class="slider" id="slider">
+            <!-- القنوات ستتم إضافتها هنا -->
+        </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('slider');
+
+        const channels = [
+            { name: "beIN SPORTS 1", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS1_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/FAST-TV-1/" },
+            { name: "beIN SPORTS 2", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS2_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/bein-sport-2-/" },
+            { name: "beIN SPORTS 3", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS3_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/Shhaha/" },
+            { name: "beIN SPORTS 4", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS4_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/TOD/" },
+            { name: "beIN SPORTS 5", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS5_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/FAST-TV-LIFE-5/" },
+            { name: "beIN SPORTS 6", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS6_DIGITAL_Mono-d-1.png", link: "https://fdxddzss.github.io/Ghhhh/" },
+            { name: "beIN SPORTS 7", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS7_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/Roor/" },
+            { name: "beIN SPORTS 8", img: "https://alraqi-tv.com/TOD.MENA/assets/logos-_beINSPORTS8.png", link: "https://fdxddzss.github.io/TOD-LIVE/" },
+            { name: "beIN SPORTS 9", img: "https://alraqi-tv.com/TOD.MENA/assets/logos-_beINSPORTS9.png", link: "https://fdxddzss.github.io/Hsxf/" },
+{ name: "beIN SPORT HD", img: "https://alraqi-tv.com/TOD.MENA/assets/bein_SPORTS_FTA_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/FAST-TV-LIFE-11/" },
+            { name: "Premier League", img: "https://alraqi-tv.com/TOD.MENA/assets/premierleague.png", link: "https://fdxddzss.github.io/Gg/" },
+            { name: "beIN SPORTS News", img: "https://alraqi-tv.com/TOD.MENA/assets/NEWS_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/Ggh/" },
+            { name: "beIN SPORTS XTRA 1", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS_XTRA1_Digital_Mono.png", link: "https://fdxddzss.github.io/FAST-TV-LIFE-11/" },
+            { name: "beIN SPORTS XTRA 2", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS_XTRA2_Digital_Mono.png", link: "https://fdxddzss.github.io/FAST-TV-LIFE-11/" },
+            { name: "beIN SPORTS XTRA 3", img: "https://alraqi-tv.com/TOD.MENA/assets/logos-_beINSPORTSXTRA3.png", link: "https://fdxddzss.github.io/FAST-TV-LIFE-11/" },
+            { name: "beIN SPORTS 1 English", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS1_ENGLISH_Digital_Mono.png", link: "https://fdxddzss.github.io/FAST-TV-LIFE-11/" },
+            { name: "beIN SPORTS 2 English", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS2_ENGLISH_Digital_Mono.png", link: "https://fdxddzss.github.io/FAST-TV-LIFE-11/" },
+            { name: "beIN SPORTS 1 French", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS1_FRENCH_Digital_Mono.png", link: "https://fdxddzss.github.io/FAST-TV-LIFE-11/" },
+            { name: "beIN SPORTS 2 French", img: "https://alraqi-tv.com/TOD.MENA/assets/beIN_SPORTS2_FRENCH_Digital_Mono.png", link: "https://fdxddzss.github.io/FAST-TV-LIFE-11/" },
+            { name: "beIN SPORTS 4K", img: "https://alraqi-tv.com/TOD.MENA/assets/4k_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/FAST-TV-LIFE-11/" },
+            { name: "beIN Movies 1 Premiere", img: "https://alraqi-tv.com/TOD.MENA/assets/MOVIES1_PREMIERE_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/Dji/" },
+            { name: "beIN Movies 2 Action", img: "https://alraqi-tv.com/TOD.MENA/assets/MOVIES2_ACTION_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/Fffjf/" },
+            { name: "beIN Movies 3 Drama", img: "https://alraqi-tv.com/TOD.MENA/assets/MOVIES3_DRAMA_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/Fghu/" },
+            { name: "beIN Movies 4 Family", img: "https://alraqi-tv.com/TOD.MENA/assets/MOVIES4_FAMILY_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/Hsxf/" },
+            { name: "beIN Series 1", img: "https://alraqi-tv.com/TOD.MENA/assets/SERIES1_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/Ttt/" },
+            { name: "beIN Series 2", img: "https://alraqi-tv.com/TOD.MENA/assets/SERIES2_DIGITAL_Mono.png", link: "https://fdxddzss.github.io/Hcf24/" },
+
+            // إضافة القنوات الجديدة
+            
+            { name: "bein dream", img: "https://alraqi-tv.com/TOD.MENA/assets/Drama_Stacked_nov_2024_200x200.png", link: "https://fdxddzss.github.io/Dfhh/" }
+        ];
+
+        // إضافة القنوات إلى السلايدر
+        channels.forEach(channel => {
+            let div = document.createElement('div');
+            div.classList.add('slide');
+            div.innerHTML = `<a href="${channel.link}" target="_blank"><img src="${channel.img}" alt="${channel.name}"><p>${channel.name}</p></a>`;
+            slider.appendChild(div);
+        });
+    </script>
+
 </body>
 </html>
